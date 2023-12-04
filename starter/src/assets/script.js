@@ -3,7 +3,6 @@
 var totalPaid = 0;
 
 /* Create an array named products which you will use to add all of your product object literals that you create in the next step. */
-const products = [];
 
 /* Create 3 or more product objects using object literal notation 
    Each product should include five properties
@@ -19,9 +18,27 @@ const products = [];
    - orange.jpg by Mae Mu
    - strawberry.jpg by Allec Gomes
 */
-products.push({ name: "Cherry", price: 1.99, quantity: 0, productId: 1, image: "../images/cherry.jpg" });
-products.push({ name: "Orange", price: 2.49, quantity: 0, productId: 2, image: "../images/orange.jpg" });
-products.push({ name: "Strawberry", price: 2.99, quantity: 0, productId: 3, image: "../images/strawberry.jpg" });
+const products = [{
+    name: "Cherry", 
+    price: 1.99, 
+    quantity: 0, 
+    productId: 1, 
+    image: "../images/cherry.jpg"
+  },
+  {
+    name: "Orange",
+    price: 2.49, 
+    quantity: 0, 
+    productId: 2, 
+    image: "../images/orange.jpg"
+  },
+  {
+    name: "Strawberry", 
+    price: 2.99, 
+    quantity: 0, 
+    productId: 3, 
+    image: "../images/strawberry.jpg"
+  }];
 
 /* Declare an empty array named cart to hold the items in the cart */
 let cart = [];
@@ -149,13 +166,23 @@ function emptyCart() {
   Hint: cartTotal function gives us cost of all the products in the cart  
 */
 function pay(amount) {
-  const total = cartTotal();
-
   //Add payment to totalPaid, in order to hold the sum of all payments
   totalPaid += amount;
+  const difference = totalPaid - cartTotal();
+
+  /* If customer paid in full or excess, reset totalPaid sum.
+    The need for this was made evident by the failure of 'pay less than the total works'
+    test, ran after 'pay more than the total works', when totalPaid is not reset */
+  if (difference >= 0) {
+    totalPaid = 0;
+    /* Perhaps here we could also reset the cart, but it's not clear if
+      this is required and the front end doesn't respond well if we only reset
+      cart data in memory -- would require dealing with additional UI implications (clear fields,
+      hide cards etc.) */
+  }
 
   //Return difference
-  return amount - total;
+  return difference;
 }
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
