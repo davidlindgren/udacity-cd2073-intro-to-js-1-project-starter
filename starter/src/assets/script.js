@@ -29,7 +29,7 @@ function findProductIndex(array, productId) {
           return i;
       }
   }
-  return -1; // Retorna -1 se o produto não for encontrado
+  return -1; // Returns -1 if not found
 }
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
