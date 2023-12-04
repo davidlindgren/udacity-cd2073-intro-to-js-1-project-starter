@@ -1,3 +1,7 @@
+/* Create a global variable that contains the total amount the user has entered into the cash received field.
+  If multiple attempts to add cash are made, the totalPaid variable will hold the sum of those attempts. */
+var totalPaid = 0;
+
 /* Create an array named products which you will use to add all of your product object literals that you create in the next step. */
 const products = [];
 
@@ -146,6 +150,11 @@ function emptyCart() {
 */
 function pay(amount) {
   const total = cartTotal();
+
+  //Add payment to totalPaid, in order to hold the sum of all payments
+  totalPaid += amount;
+
+  //Return difference
   return amount - total;
 }
 
